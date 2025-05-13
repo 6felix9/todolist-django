@@ -1,0 +1,16 @@
+.task button {
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+}
+
+.active {
+    background-color: darkgray;
+}
+
+.adding-task button {
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+}
+
