@@ -11,7 +11,7 @@ function Home() {
     const [adding, setAdding] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/tasks/')
+        axios.get('/api/tasks/')
             .then(res => setTasks(res.data))
             // .then(res => console.log(res.data))
             .catch(err => console.error('Failed to fetch tasks:', err))
@@ -23,7 +23,7 @@ function Home() {
             return;
         }
 
-        axios.post('http://localhost:8000/api/tasks/create/', {
+        axios.post('/api/tasks/create/', {
             task: newTask,
             completed: false,
         })
@@ -37,7 +37,7 @@ function Home() {
     }
 
     function updateTick(index, currStatus) {
-        axios.patch(`http://localhost:8000/api/tasks/${index}/update/`, {
+        axios.patch(`/api/tasks/${index}/update/`, {
             completed: !currStatus
         })
         .then(res => {
@@ -51,7 +51,7 @@ function Home() {
     }
 
     function deleteTask(index) {
-        axios.delete(`http://localhost:8000/api/tasks/${index}/delete/`)
+        axios.delete(`/api/tasks/${index}/delete/`)
           .then(() => {
                 setTasks(prev => 
                     prev.filter(t => 
