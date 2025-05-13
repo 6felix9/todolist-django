@@ -1,19 +1,22 @@
 #!/bin/bash
+set -e
 
-# 1) Build frontend (one level up)
+echo "🛠 Building frontend..."
 cd ../ToDoList
 npm install
 npm run build
 
-# 2) Back into backend
+echo "📦 Installing backend deps..."
 cd ../ToDoList_backend
 pip install -r requirements.txt
 
-# 3) Copy assets
+echo "📁 Copying frontend build to Django..."
 mkdir -p templates/frontend static/frontend/assets
 cp ../ToDoList/dist/index.html templates/frontend/index.html
 cp -r ../ToDoList/dist/assets/* static/frontend/assets/
 
-# 4) Django steps
+echo "🧼 Collecting static files..."
 python manage.py collectstatic --noinput
+
+echo "🧩 Running migrations..."
 python manage.py migrate
